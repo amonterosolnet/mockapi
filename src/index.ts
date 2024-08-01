@@ -194,6 +194,23 @@ app.post('/api/rut', authenticate, (req: Request, res: Response) => {
     }
 });
 
+// New Address Endpoint
+app.post('/api/address', authenticate, (req: Request, res: Response) => {
+    const { dir, num } = req.body;
+    if (dir && num) {
+        const matchedAddress = predefinedData.find(
+            (data): data is Direccion => 'calle' in data && data.calle.toLowerCase() === dir.toLowerCase() && data.calle_num === num
+        );
+        if (matchedAddress) {
+            res.json(matchedAddress);
+        } else {
+            res.status(404).json({ message: 'Address not found' });
+        }
+    } else {
+        res.status(400).json({ message: 'Address and number are required' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
