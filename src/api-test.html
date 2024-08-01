@@ -4,63 +4,138 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API Test GUI</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <h1>Test API Endpoint</h1>
-    <label for="apiKey">API Key:</label>
-    <input
-      type="text"
-      id="apiKey"
-      placeholder="Enter your API key"
-    /><br /><br />
+  <body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-8">
+      <h1 class="text-2xl font-bold mb-6 text-center">Test API Endpoints</h1>
 
-    <label for="endpoint">Endpoint:</label>
-    <select id="endpoint">
-      <option value="direcciones">/api/direcciones</option>
-      <option value="roles">/api/roles</option></select
-    ><br /><br />
+      <!-- API Key Input -->
+      <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mb-8">
+        <label for="apiKey" class="block font-medium text-gray-700"
+          >API Key:</label
+        >
+        <input
+          type="text"
+          id="apiKey"
+          class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+          placeholder="Enter your API key"
+        />
+        <button
+          onclick="storeApiKey()"
+          class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-md w-full"
+        >
+          Set API Key
+        </button>
+      </div>
 
-    <label id="queryLabel" for="query">Query:</label>
-    <input
-      type="text"
-      id="query"
-      placeholder="Enter query parameter"
-    /><br /><br />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Section for /api/direcciones -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">/api/direcciones</h2>
+          <label for="query" class="block font-medium text-gray-700"
+            >Query:</label
+          >
+          <input
+            type="text"
+            id="direccionesQuery"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter query parameter (e.g., zamora)"
+          />
+          <button
+            onclick="testDirecciones()"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md w-full"
+          >
+            Test /api/direcciones
+          </button>
+        </div>
 
-    <button onclick="testApi()">Test Endpoint</button>
+        <!-- Section for /api/roles -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">/api/roles</h2>
+          <label for="rol" class="block font-medium text-gray-700">rol:</label>
+          <input
+            type="text"
+            id="rolesQuery"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter rol (e.g., 279-10)"
+          />
+          <button
+            onclick="testRoles()"
+            class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md w-full"
+          >
+            Test /api/roles
+          </button>
+        </div>
+      </div>
 
-    <h2>Response:</h2>
-    <pre id="response"></pre>
+      <h2 class="text-xl font-semibold mt-8 text-center">Response:</h2>
+      <pre
+        id="response"
+        class="mt-4 p-4 bg-gray-100 border border-gray-300 rounded-lg overflow-auto"
+      ></pre>
+    </div>
 
     <script>
-      document
-        .getElementById('endpoint')
-        .addEventListener('change', function () {
-          const querySection = document.getElementById('query').parentNode;
-          const queryLabel = document.getElementById('queryLabel');
-          if (this.value === 'roles') {
-            querySection.style.display = 'none';
-            queryLabel.style.display = 'none';
-          } else {
-            querySection.style.display = 'block';
-            queryLabel.style.display = 'block';
-          }
-        });
+      let storedApiKey = '';
 
-      function testApi() {
-        const apiKey = document.getElementById('apiKey').value;
-        const endpoint = document.getElementById('endpoint').value;
-        const query = document.getElementById('query').value;
-        let url = `https://mockapi-rdmi.onrender.com/api/${endpoint}`;
+      function storeApiKey() {
+        storedApiKey = document.getElementById('apiKey').value;
+        alert('API Key has been set.');
+      }
 
-        if (endpoint === 'direcciones' && query) {
+      function testDirecciones() {
+        if (!storedApiKey) {
+          alert('Please set the API Key first.');
+          return;
+        }
+
+        const query = document.getElementById('direccionesQuery').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/direcciones`;
+
+        if (query) {
           url += `?q=${query}`;
         }
 
         fetch(url, {
           method: 'GET',
           headers: {
-            'x-api-key': apiKey
+            'x-api-key': storedApiKey
+          }
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').textContent = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          })
+          .catch((error) => {
+            document.getElementById('response').textContent = 'Error: ' + error;
+          });
+      }
+
+      function testRoles() {
+        if (!storedApiKey) {
+          alert('Please set the API Key first.');
+          return;
+        }
+
+        const query = document.getElementById('rolesQuery').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/roles`;
+
+        if (query) {
+          url += `?rol=${query}`;
+        }
+
+        fetch(url, {
+          method: 'GET',
+          headers: {
+            'x-api-key': storedApiKey
           }
         })
           .then((response) => response.json())
