@@ -68,11 +68,17 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
 
 // Roles Endpoint
 app.get('/api/roles', authenticate, (req: Request, res: Response) => {
-    const roles = predefinedData.map(data => ({
-        direccion: data,
-        success: true
-    }));
-    res.json(roles);
+    const rol = req.query.rol as string;
+    if (rol) {
+        const filteredData = predefinedData.filter(data => data.rol === rol);
+        if (filteredData.length > 0) {
+            res.json(filteredData[0]);
+        } else {
+            res.status(404).json({ message: 'Role not found' });
+        }
+    } else {
+        res.json(predefinedData);
+    }
 });
 
 // Autocomplete Endpoint
