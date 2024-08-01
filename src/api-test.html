@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Test GUI</title>
+  </head>
+  <body>
+    <h1>Test API Endpoint</h1>
+    <label for="apiKey">API Key:</label>
+    <input
+      type="text"
+      id="apiKey"
+      placeholder="Enter your API key"
+    /><br /><br />
+
+    <label for="endpoint">Endpoint:</label>
+    <select id="endpoint">
+      <option value="direcciones">/api/direcciones</option>
+      <option value="roles">/api/roles</option></select
+    ><br /><br />
+
+    <label id="queryLabel" for="query">Query:</label>
+    <input
+      type="text"
+      id="query"
+      placeholder="Enter query parameter"
+    /><br /><br />
+
+    <button onclick="testApi()">Test Endpoint</button>
+
+    <h2>Response:</h2>
+    <pre id="response"></pre>
+
+    <script>
+      document
+        .getElementById('endpoint')
+        .addEventListener('change', function () {
+          const querySection = document.getElementById('query').parentNode;
+          const queryLabel = document.getElementById('queryLabel');
+          if (this.value === 'roles') {
+            querySection.style.display = 'none';
+            queryLabel.style.display = 'none';
+          } else {
+            querySection.style.display = 'block';
+            queryLabel.style.display = 'block';
+          }
+        });
+
+      function testApi() {
+        const apiKey = document.getElementById('apiKey').value;
+        const endpoint = document.getElementById('endpoint').value;
+        const query = document.getElementById('query').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/${endpoint}`;
+
+        if (endpoint === 'direcciones' && query) {
+          url += `?q=${query}`;
+        }
+
+        fetch(url, {
+          method: 'GET',
+          headers: {
+            'x-api-key': apiKey
+          }
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').textContent = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          })
+          .catch((error) => {
+            document.getElementById('response').textContent = 'Error: ' + error;
+          });
+      }
+    </script>
+  </body>
+</html>
