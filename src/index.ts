@@ -112,7 +112,7 @@ const propietarios: Persona[] = [
     recordId: 1,
   },
   {
-    "rut": "1259637-7",
+    "rut": "1259637-5",
     "nombre": "Juan",
     "apellido_pat": "Martinez",
     "apellido_mat": "Lopez",
@@ -126,7 +126,7 @@ const propietarios: Persona[] = [
     "recordId": 2
   },
   {
-    "rut": "18354387-0",
+    "rut": "18354387-3",
     "nombre": "Sofia",
     "apellido_pat": "Rojas",
     "apellido_mat": "Fernandez",
@@ -140,7 +140,7 @@ const propietarios: Persona[] = [
     "recordId": 3
   },
   {
-    "rut": "23002536-4",
+    "rut": "23002536-3",
     "nombre": "Ricardo",
     "apellido_pat": "Ortiz",
     "apellido_mat": "Garcia",
@@ -157,7 +157,7 @@ const propietarios: Persona[] = [
 
 const representantes: Representante[] = [
   {
-    "rut": "23791164-5",
+    "rut": "23791164-4",
     "nombre": "Juan",
     "apellido_pat": "González",
     "apellido_mat": "Muñoz",
@@ -170,7 +170,7 @@ const representantes: Representante[] = [
     "recordId": 5
   },
   {
-    "rut": "21901495-0",
+    "rut": "21901495-3",
     "nombre": "María",
     "apellido_pat": "Fernández",
     "apellido_mat": "Pérez",
@@ -183,7 +183,7 @@ const representantes: Representante[] = [
     "recordId": 6
   },
   {
-    "rut": "16037919-0",
+    "rut": "16037919-7",
     "nombre": "Pedro",
     "apellido_pat": "Rojas",
     "apellido_mat": "Contreras",
@@ -196,7 +196,7 @@ const representantes: Representante[] = [
     "recordId": 7
   },
   {
-    "rut": "6582814-7",
+    "rut": "6582814-6",
     "nombre": "Catalina",
     "apellido_pat": "Morales",
     "apellido_mat": "Ramírez",
@@ -209,7 +209,7 @@ const representantes: Representante[] = [
     "recordId": 8
   },
   {
-    "rut": "23149536-4",
+    "rut": "23149536-3",
     "nombre": "Diego",
     "apellido_pat": "López",
     "apellido_mat": "Reyes",
@@ -239,7 +239,7 @@ const empresas: Empresa[] = [
     "recordId": 10
   },
   {
-    "rut": "1887119-1",
+    "rut": "1887119-K",
     "nombre": "Andrea",
     "apellido_pat": "Fuentes",
     "apellido_mat": "Valenzuela",
@@ -253,7 +253,7 @@ const empresas: Empresa[] = [
     "recordId": 11
   },
   {
-    "rut": "8233921-8",
+    "rut": "8233921-3",
     "nombre": "Luis",
     "apellido_pat": "Garrido",
     "apellido_mat": "Araya",
@@ -267,7 +267,7 @@ const empresas: Empresa[] = [
     "recordId": 12
   },
   {
-    "rut": "24907805-3",
+    "rut": "24907805-0",
     "nombre": "Paula",
     "apellido_pat": "Mendoza",
     "apellido_mat": "Ortiz",
@@ -281,7 +281,7 @@ const empresas: Empresa[] = [
     "recordId": 13
   },
   {
-    "rut": "5438330-3",
+    "rut": "5438330-4",
     "nombre": "Francisco",
     "apellido_pat": "Soto",
     "apellido_mat": "Carrasco",
@@ -298,7 +298,7 @@ const empresas: Empresa[] = [
 
 const arquitectos: Arquitecto[] = [
   {
-    "rut": "3681655-K",
+    "rut": "3681655-4",
     "nombre": "Ricardo",
     "apellido_pat": "Vergara",
     "apellido_mat": "Espinoza",
@@ -314,7 +314,7 @@ const arquitectos: Arquitecto[] = [
     "recordId": 15
   },
   {
-    "rut": "20641932-1",
+    "rut": "20641932-6",
     "nombre": "Fernanda",
     "apellido_pat": "Riquelme",
     "apellido_mat": "Gutiérrez",
@@ -330,7 +330,7 @@ const arquitectos: Arquitecto[] = [
     "recordId": 16
   },
   {
-    "rut": "3728534-5",
+    "rut": "3728534-K",
     "nombre": "Javier",
     "apellido_pat": "Sánchez",
     "apellido_mat": "Mora",
@@ -346,7 +346,7 @@ const arquitectos: Arquitecto[] = [
     "recordId": 17
   },
   {
-    "rut": "9468789-2",
+    "rut": "9468789-6",
     "nombre": "Valentina",
     "apellido_pat": "Bravo",
     "apellido_mat": "Fernández",
@@ -362,7 +362,7 @@ const arquitectos: Arquitecto[] = [
     "recordId": 18
   },
   {
-    "rut": "20723709-K",
+    "rut": "20723709-4",
     "nombre": "Sebastián",
     "apellido_pat": "Ramírez",
     "apellido_mat": "Castro",
