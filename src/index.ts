@@ -26,7 +26,7 @@ interface Persona {
     direccion_complemento: string;
     comuna: string;
     fono: string;
-    fax: string;
+    fax?: string; 
     mail: string;
     recordId: number;
 }
