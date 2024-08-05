@@ -1,7 +1,12 @@
 import express, { Request, Response, NextFunction } from 'express';
-
+import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const corsOptions = {
+    origin: ['https://saas-smartdom.vercel.app', 'http://localhost:3000'], 
+    optionsSuccessStatus: 200
+};
 
 const API_KEY = process.env.API_KEY || 'your-secure-api-key';
 

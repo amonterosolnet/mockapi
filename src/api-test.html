@@ -32,7 +32,7 @@
         </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Section for /api/direcciones -->
         <div class="bg-white shadow-md rounded-lg p-6">
           <h2 class="text-xl font-semibold mb-4">/api/direcciones</h2>
@@ -68,6 +68,113 @@
             class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md w-full"
           >
             Test /api/roles
+          </button>
+        </div>
+
+        <!-- Section for /api/propietarios -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">/api/propietarios</h2>
+          <label for="rut" class="block font-medium text-gray-700">RUT:</label>
+          <input
+            type="text"
+            id="propietariosRut"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter RUT without hyphen (e.g., 141783912)"
+          />
+          <button
+            onclick="testPropietarios()"
+            class="bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-md w-full"
+          >
+            Test /api/propietarios
+          </button>
+        </div>
+
+        <!-- Section for /api/empresa -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">/api/empresa</h2>
+          <label for="empresaRut" class="block font-medium text-gray-700"
+            >RUT:</label
+          >
+          <input
+            type="text"
+            id="empresaRut"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter RUT without hyphen (e.g., 14923165K)"
+          />
+          <button
+            onclick="testEmpresa()"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-md w-full"
+          >
+            Test /api/empresa
+          </button>
+        </div>
+
+        <!-- Section for /api/representante -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">/api/representante</h2>
+          <label for="representanteRut" class="block font-medium text-gray-700"
+            >RUT:</label
+          >
+          <input
+            type="text"
+            id="representanteRut"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter RUT without hyphen (e.g., 237911644)"
+          />
+          <button
+            onclick="testRepresentante()"
+            class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-md w-full"
+          >
+            Test /api/representante
+          </button>
+        </div>
+
+        <!-- Section for /api/arquitectos -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">/api/arquitectos</h2>
+          <label for="arquitectosRut" class="block font-medium text-gray-700"
+            >RUT:</label
+          >
+          <input
+            type="text"
+            id="arquitectosRut"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter RUT without hyphen (e.g., 36816554)"
+          />
+          <button
+            onclick="testArquitectos()"
+            class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md w-full"
+          >
+            Test /api/arquitectos
+          </button>
+        </div>
+
+        <!-- Section for /api/address -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-4">/api/address</h2>
+          <label for="direccion" class="block font-medium text-gray-700"
+            >Dirección:</label
+          >
+          <input
+            type="text"
+            id="addressDir"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter Dirección (e.g., SERAFIN ZAMORA)"
+          />
+          <label for="num" class="block font-medium text-gray-700"
+            >Número:</label
+          >
+          <input
+            type="text"
+            id="addressNum"
+            class="mt-1 mb-4 p-2 border border-gray-300 rounded-md w-full"
+            placeholder="Enter Número (e.g., 54)"
+          />
+          <button
+            onclick="testAddress()"
+            class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-md w-full"
+          >
+            Test /api/address
           </button>
         </div>
       </div>
@@ -137,6 +244,157 @@
           headers: {
             'x-api-key': storedApiKey
           }
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').textContent = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          })
+          .catch((error) => {
+            document.getElementById('response').textContent = 'Error: ' + error;
+          });
+      }
+
+      function testPropietarios() {
+        if (!storedApiKey) {
+          alert('Please set the API Key first.');
+          return;
+        }
+
+        const rut = document.getElementById('propietariosRut').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/propietarios`;
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': storedApiKey
+          },
+          body: JSON.stringify({ rut: rut })
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').textContent = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          })
+          .catch((error) => {
+            document.getElementById('response').textContent = 'Error: ' + error;
+          });
+      }
+
+      function testEmpresa() {
+        if (!storedApiKey) {
+          alert('Please set the API Key first.');
+          return;
+        }
+
+        const rut = document.getElementById('empresaRut').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/empresa`;
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': storedApiKey
+          },
+          body: JSON.stringify({ rut: rut })
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').textContent = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          })
+          .catch((error) => {
+            document.getElementById('response').textContent = 'Error: ' + error;
+          });
+      }
+
+      function testRepresentante() {
+        if (!storedApiKey) {
+          alert('Please set the API Key first.');
+          return;
+        }
+
+        const rut = document.getElementById('representanteRut').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/representante`;
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': storedApiKey
+          },
+          body: JSON.stringify({ rut: rut })
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').textContent = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          })
+          .catch((error) => {
+            document.getElementById('response').textContent = 'Error: ' + error;
+          });
+      }
+
+      function testArquitectos() {
+        if (!storedApiKey) {
+          alert('Please set the API Key first.');
+          return;
+        }
+
+        const rut = document.getElementById('arquitectosRut').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/arquitectos`;
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': storedApiKey
+          },
+          body: JSON.stringify({ rut: rut })
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('response').textContent = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          })
+          .catch((error) => {
+            document.getElementById('response').textContent = 'Error: ' + error;
+          });
+      }
+
+      function testAddress() {
+        if (!storedApiKey) {
+          alert('Please set the API Key first.');
+          return;
+        }
+
+        const dir = document.getElementById('addressDir').value;
+        const num = document.getElementById('addressNum').value;
+        let url = `https://mockapi-rdmi.onrender.com/api/address`;
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': storedApiKey
+          },
+          body: JSON.stringify({ dir: dir, num: num })
         })
           .then((response) => response.json())
           .then((data) => {
