@@ -10,7 +10,8 @@ const corsOptions = {
 
 const API_KEY = process.env.API_KEY || 'your-secure-api-key';
 
-app.use(express.json()); // To parse JSON request bodies
+app.use(cors(corsOptions));
+app.use(express.json());
 
 interface Direccion {
     rol: string;
